@@ -1,0 +1,49 @@
+.light {
+    --bg: var(--grey0);
+    --h3wrap: linear-gradient(0deg, var(--purple1), var(--purple2));
+    --productColorLit: var(--purple1);
+
+    --firstShadowColor: var(--white);
+    --firstShadowColor: var(--white);
+
+    --inputColor: var(--grey6);
+
+    --inputfocus: var(--purple1);
+
+    --amountBG: var(--white);
+
+    --box-shadow: var(--shadowLight);
+
+    --outputcontainer: linear-gradient(90deg, var(--purple1), var(--cyan1));
+
+    --spancolor: var(--white);
+
+    --bgsubmit: linear-gradient(90deg, var(--purple1), var(--cyan),
+            var(--purple2));
+
+    --error-color: var(--red);
+
+    --btn: linear-gradient(90deg, var(--purple1), var(--cyan1));
+}
+.dark {
+    --bg: var(--purpleDark);
+
+    --h3wrap: linear-gradient(0deg, var(--grey1), var(--white));
+
+    --productColorLit: var(--grey0);
+
+    --inputColor: var(--grey0);
+
+    --inputfocus: var(--cyan);
+
+    --box-shadow: var(--shadowLight);
+
+    --outputcontainer: linear-gradient(90deg, var(--purple1), var(--cyan1));
+
+    --bgsubmit: linear-gradient(90deg, var(--yellow), var(--cyan),
+            var(--purple2));
+
+    --error-color: var(--red);
+
+    --btn: linear-gradient(90deg, var(--purple1), var(--cyan1));
+}

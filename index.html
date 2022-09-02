@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <script src="script/jquery.js"></script>
+    <script src="script/app.js" defer></script>
+    <title>Budget App</title>
+</head>
+
+<body class="dark">
+    <!-- Theme switcher -->
+    <div class="wrapper">
+        <div class="container">
+            <div class="sub-container">
+                <!-- Budget -->
+                <div class="total-amount-container">
+                    <h3>Budget</h3>
+                    <div class="err-wrapper">
+
+                        <p class="hide error" id="budget-error">
+                            Value cannot be empty
+                        </p>
+                        <input type="number" class="input" id="total-amount" placeholder="Enter Total Amount"
+                            pattern="[0-9]{2,}" maxlength='10' minlength="3">
+                    </div>
+                    <button class="submit" id="total-amount-btn" data-text="Set Budget">Set Budget</button>
+                    <button class="submit hide" id="add-budget" data-text="Increase Budget">Increase Budget</button>
+                </div>
+                <!-- Expenditure -->
+                <div class="user-amount-container">
+                    <h3>Expense</h3>
+                    <div class="err-wrapper">
+
+                        <p class="hide error" id="product-title-error">
+                            Cost/Title cannot be empty
+                        </p>
+
+                        <input type="text" class="product-title input" id="product-title" placeholder="Title of Product"
+                            maxlength='20' minlength="3">
+
+                        <input type="number" class="input" id="user-amount" placeholder="Price of product"
+                            pattern="[0-9]{2,}" maxlength='10' minlength="3">
+                    </div>
+
+                    <button class="submit" id="check-amount" data-text="Add to List">Add to List</button>
+                </div>
+            </div>
+            <!-- Output -->
+            <div class="output-container flex-space">
+                <div>
+                    <p>Total Budget</p>
+                    <span id="amount">0</span>
+                </div>
+                <div>
+                    <p>Expense</p>
+                    <span id="expenditure-value">0</span>
+                </div>
+                <div>
+                    <p>Balance</p>
+                    <span id="balance-amount">0</span>
+                </div>
+            </div>
+            <!-- List -->
+            <div class="list hide">
+                <h3>Expense List</h3>
+                <div class="list-container" id="list"></div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <div class="footer">
+        <p>MADE WITH <span id="hrt"><i class="far fa-heart"></i></span>
+             | 
+            <span id="name">꧁LiquidTime꧂</span>  2022</p>
+    </div>
+</body>
+
+</html>
