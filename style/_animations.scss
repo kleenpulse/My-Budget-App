@@ -1,0 +1,27 @@
+@keyframes check-it {
+    to {
+
+        width: 50px;
+        translate: 0 0;
+        transition: all 1s ease;
+    }
+}
+
+@keyframes show-pill {
+    50%{
+        translate: 0 0;
+    }
+}
+@keyframes rotate-hue {
+    to {
+        filter: hue-rotate(1turn);
+    }
+}
+
+
+.pill-it{
+    animation: show-pill 3s ease forwards;
+}
+.checkit{
+    animation: check-it 1s .5s ease forwards ;
+}

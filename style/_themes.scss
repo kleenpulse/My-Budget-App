@@ -1,10 +1,19 @@
 .light {
     --bg: var(--grey0);
-    --h3wrap: linear-gradient(0deg, var(--purple1), var(--purple2));
+
+    --placeholder: var(--grey2);
+
+    --h3wrap: linear-gradient(-90deg, var(--purple1), var(--purple2),var(--purple3));
+
+    --fontAwesome: linear-gradient(-90deg, var(--purple1), var(--purple2));
+
     --productColorLit: var(--purple1);
 
-    --firstShadowColor: var(--white);
-    --firstShadowColor: var(--white);
+    --whiteLight: var(--white);
+
+    --firstShadowColor: var(--shadowLight2);
+
+    --secondShadowColor: var(--shadowLight);
 
     --inputColor: var(--grey6);
 
@@ -13,6 +22,8 @@
     --amountBG: var(--white);
 
     --box-shadow: var(--shadowLight);
+
+    --outputColor: var(--white);
 
     --outputcontainer: linear-gradient(90deg, var(--purple1), var(--cyan1));
 
@@ -25,18 +36,31 @@
 
     --btn: linear-gradient(90deg, var(--purple1), var(--cyan1));
 }
+
 .dark {
     --bg: var(--purpleDark);
 
-    --h3wrap: linear-gradient(0deg, var(--grey1), var(--white));
+    --fontAwesome: linear-gradient(90deg, var(--purple3), var(--purple2));
+
+    --placeholder: var(--grey2);
+
+    --h3wrap: linear-gradient(0deg, var(--grey2), var(--grey0));
 
     --productColorLit: var(--grey0);
 
     --inputColor: var(--grey0);
 
+    --outputColor: var(--grey0);
+
+    --firstShadowColor: var(--shadowDark2);
+    
+    --secondShadowColor: var(--black);
+
     --inputfocus: var(--cyan);
 
-    --box-shadow: var(--shadowLight);
+    --box-shadow: var(--black);
+
+    --white: var(--grey6);
 
     --outputcontainer: linear-gradient(90deg, var(--purple1), var(--cyan1));
 
@@ -46,4 +70,6 @@
     --error-color: var(--red);
 
     --btn: linear-gradient(90deg, var(--purple1), var(--cyan1));
+
+    --whiteLight: var(--purpleDark2);
 }
