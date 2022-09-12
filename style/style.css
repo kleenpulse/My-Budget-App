@@ -24,6 +24,7 @@
   --purple1: #21024b;
   --purple2: #d803b1;
   --purple3: #3e017a;
+  --orange: #ff6f00;
   --red: #e31f01;
   --valid: #11d2c5;
   --cyan: #0ff;
@@ -32,22 +33,78 @@
   --verydarkcyan: #012f2f;
   --overlay: rgba(73, 71, 71, 0.593);
   --yellow: #ffde0b;
-  --check-it:linear-gradient(90deg, var(--blue), var(--purple2),
-      var(--cyan));
+  --check-it: linear-gradient(90deg, var(--blue), var(--purple2),
+          var(--cyan));
   user-select: none;
-  --switchWidth: 100px;
-  --switchHeight: 50px;
+  --switchWidth: 80px;
+  --switchHeight: 30px;
+}
+
+.theme-wrap {
+  position: absolute;
+  top: 10px;
+  width: 100%;
+  z-index: 99;
+  transition: all 400ms ease;
+}
+.theme-wrap .say-hello {
+  position: absolute;
+  left: 1em;
+  box-shadow: -4px -4px 5px var(--firstShadowColor), 4px 4px 5px var(--secondShadowColor);
+  border-radius: 10px;
+  padding: 0 5px;
+}
+.theme-wrap .say-hello #say-hello {
+  font-weight: bold;
+  background: var(--sayHello);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  filter: brightness(120%);
+  text-transform: uppercase;
+}
+.theme-wrap .switch {
+  position: absolute;
+  right: 1em;
+  width: var(--switchWidth);
+  height: var(--switchHeight);
+  border-radius: 20px;
+  box-shadow: inset -4px -4px 5px var(--firstShadowColor), inset 4px 4px 5px var(--secondShadowColor);
+  display: flex;
+  align-items: center;
+  transition: all 400ms ease;
+}
+@media (max-width: 371px) {
+  .theme-wrap .switch {
+    right: 5px;
+  }
+}
+.theme-wrap .switch .indicator {
+  position: absolute;
+  width: var(--switchHeight);
+  height: var(--switchHeight);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: -4px -4px 5px var(--firstShadowColor), 4px 4px 5px var(--secondShadowColor);
+  border-radius: 50%;
+  scale: 0.8;
+  transition: all 400ms ease;
+  cursor: pointer;
+}
+.theme-wrap .switch .indicator:active {
+  scale: 0.7;
 }
 
 .notify-wrap {
-  background: rgba(0, 0, 0, 0);
+  background: transparent;
   position: fixed;
   width: 100%;
   height: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 999;
+  z-index: 9;
   top: 0;
   transition: all 0.4s ease !important;
 }
@@ -56,9 +113,11 @@
   height: 50px;
   scale: 0.9;
   border-radius: 40px;
-  background: #000;
+  background: #000000;
   translate: 0 -100px;
   display: none;
+  position: absolute;
+  z-index: 9999;
 }
 .notify-wrap .pill .theme-text {
   display: flex;
@@ -88,6 +147,10 @@
   stroke-width: 14px;
 }
 
+.dark .pill {
+  box-shadow: 0 0 10px #7600fe;
+}
+
 @keyframes check-it {
   to {
     width: 50px;
@@ -105,49 +168,33 @@
     filter: hue-rotate(1turn);
   }
 }
+@keyframes changeBorder {
+  50% {
+    border: 1px solid var(--switchTextColor);
+  }
+}
 .pill-it {
-  animation: show-pill 3s ease forwards;
+  animation: show-pill 3s cubic-bezier(0.22, 0.61, 0.26, 0.74) forwards;
 }
 
 .checkit {
   animation: check-it 1s 0.5s ease forwards;
 }
 
-.theme-wrap {
-  position: absolute;
-  top: 10px;
-  width: 100%;
-  z-index: 9999;
-}
-.theme-wrap .switch {
-  position: absolute;
-  right: 1em;
-  width: var(--switchWidth);
-  height: var(--switchHeight);
-  border: 1px solid cyan;
-  display: flex;
-  align-items: center;
-  transition: all 0.4s ease;
-}
-.theme-wrap .switch .indicator {
-  position: absolute;
-  width: var(--switchHeight);
-  height: var(--switchHeight);
-  border: 1px solid cyan;
-  border-radius: 50%;
-  scale: 0.8;
-  transition: all 0.4s ease;
-  cursor: pointer;
+.switch-border {
+  animation: changeBorder 2s ease forwards;
 }
 
 .right {
   right: 0;
-  transition: all 0.4s ease;
+  transition: all 400ms cubic-bezier(0.22, 0.61, 0.26, 0.74);
 }
 
 .light {
   --bg: var(--grey0);
+  --switchTextColor: var(--black);
   --placeholder: var(--grey2);
+  --sayHello:linear-gradient(90deg, var(--blue), var(--purple2),var(--orange));
   --h3wrap: linear-gradient(-90deg, var(--purple1), var(--purple2),var(--purple3));
   --fontAwesome: linear-gradient(-90deg, var(--purple1), var(--purple2));
   --productColorLit: var(--purple1);
@@ -169,6 +216,8 @@
 
 .dark {
   --bg: var(--purpleDark);
+  --sayHello: linear-gradient(90deg, var(--blue), var(--purple2), var(--cyan));
+  --switchTextColor: #fff;
   --fontAwesome: linear-gradient(90deg, var(--purple3), var(--purple2));
   --placeholder: var(--grey2);
   --h3wrap: linear-gradient(0deg, var(--grey2), var(--grey0));
@@ -197,7 +246,7 @@ body {
 .wrapper {
   font-size: 16px;
   padding: 0 3rem;
-  margin: 5% auto;
+  margin: 4em auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -223,8 +272,16 @@ body {
   }
 }
 
+.fa-moon,
+.fa-sun {
+  color: var(--switchTextColor);
+  font-size: 1.5em;
+}
+
 .container {
   width: 100%;
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
 }
 .container input {
   display: flex;
@@ -484,6 +541,32 @@ body {
 
 .error {
   color: var(--error-color);
+}
+
+.custom-msg {
+  background: var(--black);
+  font-family: "Nosifer", cursive;
+  position: fixed;
+  width: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 50vw;
+  height: auto;
+  top: 50%;
+  left: 50%;
+  padding: 1.2vmin;
+  border-radius: 20px;
+  transform: translate(-50%, -50%);
+  transition: all 400ms ease;
+}
+.custom-msg #copied {
+  width: fit-content;
+  background: var(--check-it);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  filter: brightness(120%);
 }
 
 .edit-true {

@@ -1,7 +1,7 @@
 
+
 // localStorage.clear()
 const body = document.body
-const themeSwitch = document.querySelector('#switch')
 const numRegex = /[^\d.-]/g
 let totalAmount = document.querySelector('#total-amount')
 let userAmount = document.querySelector('#user-amount')
@@ -12,7 +12,7 @@ const errorMessage = document.querySelector('#budget-error')
 const inputEl = document.querySelectorAll('.input')
 const productTitleError = document.querySelector('#product-title-error')
 
-const productCostError = document.querySelector('#product-cost-error')
+// const productCostError = document.querySelector('#product-cost-error')
 let amount = document.querySelector('#amount')
 const expenditureValue = document.querySelector('#expenditure-value')
 const balanceValue = document.querySelector('#balance-amount')
@@ -28,47 +28,71 @@ let tempIncrease
 let savedExpenseListArr = []
 let calBalance
 let calExpense
+let currencySym = '$'
+
+const sayHelloId = document.getElementById('say-hello')
+const themeSwitch = document.querySelector('#switch')
+const switchContainer = document.querySelector('.switch')
 let themeText = document.querySelector('#theme-text')
 let pill = document.querySelector('.pill.pill-it')
 /********Variables******* */
 
 //=======================
-console.log(savedTheme)
 /********Local storage******* */
-
+let savedName = localStorage.getItem('gameName')
 var savedExpenses = getSavedItem('savedExpense')
-console.log(savedExpenses)
 let checkSavedAmount = getSavedItem('savedAmount')
 var savedExpenseList = getSavedItem('myarr')
 /********Local storage******* */
 
 // ====== Theme Switcher ======
+if (savedName && savedName !== undefined){
+    sayHelloId.textContent = `Welcome ${savedName}`
+    setTimeout(() => {
+        
+        sayHelloId.textContent = `${sayHello()} ${savedName}`
+    }, 10000);
+}else{
+    sayHelloId.textContent = `${sayHello()}`
+}
 if (savedTheme && savedTheme !== undefined) {
     body.removeAttribute('class')
     body.classList.add(savedTheme)
     // themeText.textContent = savedTheme
     if (body.getAttribute('class') === 'dark') {
         themeSwitch.classList.add('right')
+        // themeSwitch.innerHTML = '<i class="fa-solid fa-moon"></i>'
     } else if (body.getAttribute('class') === 'light') {
+        // themeSwitch.innerHTML = '<i class="fa-solid fa-sun"></i>'
         themeSwitch.classList.remove('right')
 
     }
 }
 
-themeSwitch.addEventListener('click', function () {
+addSwitchIcon()
 
+
+themeSwitch.addEventListener('click', function () {
+    
+        let winWidth = window.innerWidth;
+        if (winWidth < 637) {
+    
+            sayHelloId.style.display = 'none'
+        }
+    
     let theme
-console.log(themeSwitch)
- 
+
     if (!(this.disabled) === true) {
         if (body.getAttribute('class') === 'light') {
             theme = 'dark'
+            addSwitchIcon()
+            
             this.classList.add('right')
             body.classList.remove('light')
         } else if (body.getAttribute('class') === 'dark') {
             theme = 'light'
+            addSwitchIcon()
             this.classList.remove('right')
-
             body.classList.remove('dark')
 
         }
@@ -80,24 +104,61 @@ console.log(themeSwitch)
         setTimeout(() => {
             pill.style.display = 'none'
             disableBtn(this, false)
-    
-        }, 3100);
+            sayHelloId.style.display = 'block'
+
+        }, 3050);
     } else {
         // this.classList.remove('right')
-        customMsg('disabled',1000)
+        customMsg('Switch disabled', 1300)
 
     }
 
 });
+function addSwitchIcon() {
+    switchContainer.classList.add('switch-border')
+    setTimeout(() => {
+        switchContainer.classList.remove('switch-border')
+        if (body.getAttribute('class') === 'light') {
+            themeSwitch.innerHTML = '<i class="fa-solid fa-sun"></i>'
+    
+        } else {
+            themeSwitch.innerHTML = '<i class="fa-solid fa-moon"></i>'
+    
+        }
+    }, 1500);
+}
+
+// Say Hello
+function sayHello() {
+    let welcome;
+    let date = new Date();
+    let helloHour = date.getHours();
+    let helloMin = date.getMinutes();
+    let helloSec = date.getSeconds();
+    if (helloMin < 10) {
+        helloMin = "0" + helloMin;
+    }
+    if (helloSec < 10) {
+        helloSec = "0" + helloSec;
+    }
+    if (helloHour < 12) {
+        welcome = "Good Morning";
+    } else if (helloHour < 16) {
+        welcome = "Good Afternoon";
+    } else {
+        welcome = "Good Evening";
+    }
+
+    return welcome
+}
+
 // ====== Theme Switcher [END]======
 
 disableBtn(checkAmountBtn, true)
 disableBtn(productTitle, true)
 disableBtn(userAmount, true)
-let currencySym = '$'
-console.log(savedExpenseList)
-console.log(checkSavedAmount)
-
+// console.log(savedExpenseList)
+// console.log(checkSavedAmount)
 
 if (checkSavedAmount !== undefined && checkSavedAmount !== null) {
     updateValues()
@@ -130,7 +191,7 @@ function updateValues() {
 
     }
 }
-console.log(checkSavedAmount)
+// console.log(checkSavedAmount)
 
 // Set Budget Part
 totalAmountBtn.addEventListener('click', () => {
@@ -161,14 +222,14 @@ totalAmountBtn.addEventListener('click', () => {
         totalAmount.value = ''
 
         let isAmount = amount.textContent.replace(/[^0-9]/g, '')
-        console.log(isAmount)
+        // console.log(isAmount)
         if (isAmount > 0) {
             increaseBudget.classList.remove('hide')
 
         }
     }
 })
-console.log(tempAmount)
+// console.log(tempAmount)
 increaseBudget.onclick = () => {
     addToBudget()
 }
@@ -235,10 +296,7 @@ const disableBtns = (bool) => {
 }
 function customMsg(msg, time) {
     var styler = document.createElement("div")
-    styler.setAttribute(
-        "style",
-        'background:#000a2d;position:fixed;width:auto;min-width:80vw;height:auto;top:50%;left:50%;padding:1.2vmin;text-align:center;border-radius:20px;transform:translate(-50%,-50%);color:cyan;'
-    )
+    styler.className = 'custom-msg'
     styler.innerHTML = `<h1 id="copied"> ${msg} </h1>`
     setTimeout(function () {
         styler.parentNode.removeChild(styler)
@@ -261,11 +319,11 @@ const modifyElement = (element, edit = false) => {
     }
     let calEditBal = parseInt(currentBalance) + parseInt(parentAmount)
     balanceValue.textContent = currencySym + addComma(calEditBal)
-    console.log(calEditBal)
+    // console.log(calEditBal)
     calExpense = parseInt(currentExpense) - parseInt(parentAmount)
     expenditureValue.textContent = currencySym + addComma(calExpense)
     saveArrOnly('savedExpense', calExpense)
-    console.log(parentDiv)
+    // console.log(parentDiv)
     parentDiv.remove()
 }
 
@@ -298,30 +356,28 @@ let listCreator = function (expenseName, expenseValue, expenseId) {
     list.appendChild(sublistContent)
 
     deleteBtn.addEventListener('click', function (el) {
-        console.log(el.target.parentElement.id)
-        console.log(el.target.id)
+        
         modifyElement(deleteBtn)
 
         let currentElementId = el.target.parentElement.id
         savedExpenseListArr = savedExpenseListArr.filter(function (arr) {
-            console.log(arr.id !== currentElementId)
+            
             return arr.id !== currentElementId
         })
-        console.log(savedExpenseListArr)
+        // console.log(savedExpenseListArr)
         saveArrOnly('myarr', savedExpenseListArr)
 
     })
     editBtns.addEventListener('click', function (el) {
-        console.log(el.target.parentElement.id)
-        console.log(el.target.id)
+        
         productTitleError.classList.add('hide')
 
         let editElement = el.target.parentElement.id
         savedExpenseListArr = savedExpenseListArr.filter(function (arr) {
-            console.log(arr.id !== editElement)
+           
             return arr.id !== editElement
         })
-        console.log(savedExpenseListArr)
+        // console.log(savedExpenseListArr)
         saveArrOnly('myarr', savedExpenseListArr)
         modifyElement(editBtns, true)
 
@@ -331,9 +387,9 @@ let listCreator = function (expenseName, expenseValue, expenseId) {
 var loadList = true
 function disableBtn(el, boolean = false) {
     if (boolean) {
-        if(el === themeSwitch){
+        if (el === themeSwitch) {
             el.title = ''
-        }else{
+        } else {
 
             el.title = 'Add Budget Amount first'
         }
@@ -359,7 +415,7 @@ checkAmountBtn.addEventListener('click', () => {
     // Check for Duplicates
     let productCheck = document.querySelectorAll('.product')
     Array.from(productCheck).forEach(title => {
-        console.log(title.textContent)
+        // console.log(title.textContent)
         if (productTitle.value.toLowerCase() === title.textContent.toLowerCase()) {
             customMsg('Item Already Exist', 1000)
             loadList = false
@@ -375,7 +431,7 @@ checkAmountBtn.addEventListener('click', () => {
         expenditureValue.textContent = currencySym + addComma(sum)
         // Total balance (budget - total expense)
         calBalance = tempAmount - sum
-        console.log(calBalance)
+        // console.log(calBalance)
         balanceValue.textContent = currencySym + addComma(calBalance)
         // sum total expenses saved as sum
         saveArrOnly('savedExpense', sum)
@@ -394,7 +450,7 @@ checkAmountBtn.addEventListener('click', () => {
         userAmount.value = ''
         createIds()
     }
-    console.log(savedExpenseListArr)
+    // console.log(savedExpenseListArr)
     // Empty input
 })
 
@@ -410,7 +466,7 @@ function loadFilteredArr() {
             filterArr(savedExpenseListArr).forEach((el, index) => {
                 el.id = (Number(index) + 1).toString()
                 listCreator(el.title, el.cost, el.id)
-                console.log(el)
+                // console.log(el)
             })
             listDisplay.classList.remove('hide')
         }
@@ -423,7 +479,7 @@ function createIds() {
     let listChild = document.querySelectorAll('.sublist-content a')
     listChild.forEach((child, index) => {
         child.id = Number(index) + 1
-        console.log(child)
+        
     })
 }
 createIds()
@@ -432,7 +488,7 @@ createIds()
 function filterArr(arr) {
     const ids = arr.map(o => o.title)
     const filtered = arr.filter(({ title }, index) => !ids.includes(title, index + 1))
-    console.log(filtered)
+    
     return filtered
 }
 // Save to LocalStorage

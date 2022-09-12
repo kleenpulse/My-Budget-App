@@ -8,20 +8,32 @@
 }
 
 @keyframes show-pill {
-    50%{
+    50% {
         translate: 0 0;
     }
 }
+
 @keyframes rotate-hue {
     to {
         filter: hue-rotate(1turn);
     }
 }
 
-
-.pill-it{
-    animation: show-pill 3s ease forwards;
+@keyframes changeBorder {
+     50% {
+        border: 1px solid var(--switchTextColor);
+    }
 }
-.checkit{
-    animation: check-it 1s .5s ease forwards ;
+
+
+.pill-it {
+    animation: show-pill 3s cubic-bezier(0.22, 0.61, 0.26, 0.74) forwards;
+}
+
+.checkit {
+    animation: check-it 1s .5s ease forwards;
+}
+
+.switch-border {
+    animation: changeBorder 2s ease forwards;
 }

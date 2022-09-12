@@ -1,7 +1,11 @@
 .light {
     --bg: var(--grey0);
 
+    --switchTextColor: var(--black);
+
     --placeholder: var(--grey2);
+
+--sayHello:linear-gradient(90deg, var(--blue), var(--purple2),var(--orange));
 
     --h3wrap: linear-gradient(-90deg, var(--purple1), var(--purple2),var(--purple3));
 
@@ -39,6 +43,10 @@
 
 .dark {
     --bg: var(--purpleDark);
+
+    --sayHello: linear-gradient(90deg, var(--blue), var(--purple2), var(--cyan));
+
+    --switchTextColor: #fff;
 
     --fontAwesome: linear-gradient(90deg, var(--purple3), var(--purple2));
 

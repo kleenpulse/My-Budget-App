@@ -27,6 +27,7 @@
     --purple1: #21024b;
     --purple2: #d803b1;
     --purple3: #3e017a;
+    --orange: #ff6f00;
     --red: #e31f01;
     --valid: #11d2c5;
     --cyan: #0ff;
@@ -35,48 +36,22 @@
     --verydarkcyan: #012f2f;
     --overlay: rgba(73, 71, 71, 0.593);
     --yellow: #ffde0b;
-    --check-it:linear-gradient(90deg, var(--blue), var(--purple2),
-        var(--cyan));
+    --check-it: linear-gradient(90deg, var(--blue), var(--purple2),
+            var(--cyan));
     user-select: none;
 
-    --switchWidth: 100px;
-    --switchHeight: 50px;
+    --switchWidth: 80px;
+    --switchHeight: 30px;
 }
+
 @import 'notify';
 @import 'animations';
 
-.theme-wrap {
-    position: absolute;
-    top: 10px;
-    width: 100%;
-    z-index: 9999;
 
-    .switch {
-        position: absolute;
-        right: 1em;
-        width: var(--switchWidth);
-        height: var(--switchHeight);
-        border: 1px solid cyan;
-        display: flex;
-        align-items: center;
-        transition: all .4s ease;
-
-        .indicator {
-            position: absolute;
-            width: var(--switchHeight);
-            height: var(--switchHeight);
-            border: 1px solid cyan;
-            border-radius: 50%;
-            scale: .8;
-            transition: all .4s ease;
-            cursor: pointer;
-        }
-    }
-}
 
 .right {
     right: 0;
-    transition: all .4s ease;
+    transition: all 400ms cubic-bezier(0.22, 0.61, 0.26, 0.74);
 }
 
 $btnShadow: -3px -3px 5px var(--firstShadowColor),
@@ -92,10 +67,11 @@ body {
 }
 
 .wrapper {
+    
     font-size: 16px;
     // max-width: 45.75em;
     padding: 0 3rem;
-    margin: 5% auto;
+    margin: 4em auto;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -122,9 +98,16 @@ body {
     }
 }
 
+.fa-moon,
+.fa-sun {
+    color: var(--switchTextColor);
+    font-size: 1.5em;
+}
+
 .container {
     width: 100%;
-
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
 
 
     input {
@@ -416,12 +399,38 @@ body {
 
 }
 
+.custom-msg {
+    background: var(--black);
+    font-family: 'Nosifer', cursive;
+    position: fixed;
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 50vw;
+    height: auto;
+    top: 50%;
+    left: 50%;
+    padding: 1.2vmin;
+    border-radius: 20px;
+    transform: translate(-50%, -50%);
+    transition: all 400ms ease;
 
+    #copied {
+        width: fit-content;
+        background: var(--check-it);
+        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text;
+        background-clip: text;
+        filter: brightness(120%);
+    }
+}
 
 .edit-true {
     cursor: not-allowed !important;
     opacity: .5;
-    &:where(:hover){
+
+    &:where(:hover) {
         animation-play-state: paused !important;
     }
 }
