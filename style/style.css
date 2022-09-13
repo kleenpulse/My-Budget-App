@@ -212,6 +212,7 @@
           var(--purple2));
   --error-color: var(--red);
   --btn: linear-gradient(90deg, var(--purple1), var(--cyan1));
+  --scrollbar: var(--grey2);
 }
 
 .dark {
@@ -235,6 +236,7 @@
   --error-color: var(--red);
   --btn: linear-gradient(90deg, var(--purple1), var(--cyan1));
   --whiteLight: var(--purpleDark2);
+  --scrollbar: var(--purple1);
 }
 
 body {
@@ -641,19 +643,9 @@ body {
 
 ::-webkit-scrollbar {
   width: 8px;
-  background: #e8e8e8;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #000;
-  border-radius: 12px;
-}
-
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #cdcccc;
+  background: var(--scrollbar);
   border-radius: 10px;
 }/*# sourceMappingURL=style.css.map */

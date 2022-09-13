@@ -67,7 +67,7 @@ body {
 }
 
 .wrapper {
-    
+
     font-size: 16px;
     // max-width: 45.75em;
     padding: 0 3rem;
@@ -507,19 +507,9 @@ body {
 
 ::-webkit-scrollbar {
     width: 8px;
-    background: #e8e8e8;
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: #000;
-    border-radius: 12px;
-}
-
-::-webkit-scrollbar {
-    width: 8px;
-}
-
-::-webkit-scrollbar-thumb {
-    background: #cdcccc;
+    background: var(--scrollbar);
     border-radius: 10px;
 }

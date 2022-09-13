@@ -28,7 +28,7 @@ let tempIncrease
 let savedExpenseListArr = []
 let calBalance
 let calExpense
-let currencySym = '$'
+let currencySym = '₦'
 
 const sayHelloId = document.getElementById('say-hello')
 const themeSwitch = document.querySelector('#switch')

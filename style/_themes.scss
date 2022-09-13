@@ -39,6 +39,8 @@
     --error-color: var(--red);
 
     --btn: linear-gradient(90deg, var(--purple1), var(--cyan1));
+
+    --scrollbar: var(--grey2);
 }
 
 .dark {
@@ -80,4 +82,6 @@
     --btn: linear-gradient(90deg, var(--purple1), var(--cyan1));
 
     --whiteLight: var(--purpleDark2);
+
+    --scrollbar: var(--purple1);
 }

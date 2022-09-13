@@ -436,12 +436,13 @@ new Ribbons({
     colorSaturation: '60%',
     colorBrightness: '50%',
     colorAlpha: 0.7,
-    colorCycleSpeed: 5,
+    colorCycleSpeed: 4,
     verticalPosition: 'random',
     horizontalSpeed: 200,
     ribbonCount: 4,
-    strokeSize: 0,
+    strokeSize: 1,
     parallaxAmount: -0.2,
-    animateSections: true
+    animateSections: false,
+    
 })
 
