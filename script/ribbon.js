@@ -433,14 +433,15 @@
     })
 
 new Ribbons({
-    colorSaturation: '70%',
-    colorBrightness: '60%',
+    colorSaturation: '60%',
+    colorBrightness: '50%',
     colorAlpha: 0.7,
     colorCycleSpeed: 5,
     verticalPosition: 'random',
     horizontalSpeed: 200,
-    ribbonCount: 5,
+    ribbonCount: 4,
     strokeSize: 0,
     parallaxAmount: -0.2,
     animateSections: true
 })
+
