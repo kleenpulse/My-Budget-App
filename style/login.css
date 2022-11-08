@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Nosifer&family=Poppins:wght@400;500&family=Rajdhani:wght@400;500;600&display=swap");
 *,
 root {
   padding: 0;
@@ -179,5 +180,9 @@ input:focus:valid ~ label {
 
 .footer {
   position: absolute;
+  font-family: rajdhani;
+  text-transform: uppercase;
+  font-weight: bold;
   bottom: 10px;
+  color: rgba(0, 0, 0, 0.63);
 }/*# sourceMappingURL=login.css.map */
