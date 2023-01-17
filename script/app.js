@@ -1,6 +1,7 @@
-
+let yearEl = document.getElementById('year')
 
 // localStorage.clear()
+let themeBtn = document.querySelector('#themeButton')
 const body = document.body
 const numRegex = /[^\d.-]/g
 let totalAmount = document.querySelector('#total-amount')
@@ -21,7 +22,7 @@ const list = document.querySelector('#list')
 const listDisplay = document.querySelector('.list')
 
 /********Variables******* */
-const savedTheme = localStorage.getItem('saveTheme')
+
 let tempAmount = 0
 let tempBalance
 let tempIncrease
@@ -31,62 +32,57 @@ let calExpense
 let currencySym = '₦'
 
 const sayHelloId = document.getElementById('say-hello')
-const themeSwitch = document.querySelector('#switch')
-const switchContainer = document.querySelector('.switch')
+
 let themeText = document.querySelector('#theme-text')
 let pill = document.querySelector('.pill.pill-it')
 /********Variables******* */
 
 //=======================
 /********Local storage******* */
+let savedTheme = localStorage.getItem('saveTheme')
+
 let savedName = localStorage.getItem('gameName')
 var savedExpenses = getSavedItem('savedExpense')
 let checkSavedAmount = getSavedItem('savedAmount')
 var savedExpenseList = getSavedItem('myarr')
 /********Local storage******* */
 
+// get full year
+let year = new Date().getFullYear()
+yearEl.textContent = year
 // ====== Theme Switcher ======
-if (savedName && savedName !== undefined){
+if (savedTheme) {
+    body.className = savedTheme
+}
+if (savedName && savedName !== undefined) {
     sayHelloId.textContent = `Welcome ${savedName}`
     setTimeout(() => {
-        
+
         sayHelloId.textContent = `${sayHello()} ${savedName}`
     }, 10000);
-}else{
+} else {
     sayHelloId.textContent = `${sayHello()}`
 }
-if (savedTheme && savedTheme !== undefined) {
-    body.removeAttribute('class')
-    body.classList.add(savedTheme)
-    // themeText.textContent = savedTheme
-    if (body.getAttribute('class') === 'dark') {
-        themeSwitch.classList.add('right')
-        // themeSwitch.innerHTML = '<i class="fa-solid fa-moon"></i>'
-    } else if (body.getAttribute('class') === 'light') {
-        // themeSwitch.innerHTML = '<i class="fa-solid fa-sun"></i>'
-        themeSwitch.classList.remove('right')
 
-    }
-}
 
 addSwitchIcon()
 
 
-themeSwitch.addEventListener('click', function () {
-    
-        let winWidth = window.innerWidth;
-        if (winWidth < 637) {
-    
-            sayHelloId.style.display = 'none'
-        }
-    
+themeBtn.addEventListener('click', function () {
+
+    let winWidth = window.innerWidth;
+    if (winWidth < 637) {
+
+        sayHelloId.style.display = 'none'
+    }
+
     let theme
 
     if (!(this.disabled) === true) {
         if (body.getAttribute('class') === 'light') {
             theme = 'dark'
             addSwitchIcon()
-            
+
             this.classList.add('right')
             body.classList.remove('light')
         } else if (body.getAttribute('class') === 'dark') {
@@ -98,7 +94,7 @@ themeSwitch.addEventListener('click', function () {
         }
         pill.style.display = 'block'
         localStorage.setItem('saveTheme', theme)
-        disableBtn(themeSwitch, true)
+        disableBtn(themeBtn, true)
         themeText.textContent = theme
         body.classList.toggle(theme)
         setTimeout(() => {
@@ -115,16 +111,10 @@ themeSwitch.addEventListener('click', function () {
 
 });
 function addSwitchIcon() {
-    switchContainer.classList.add('switch-border')
+    themeBtn.classList.add('switch-border')
     setTimeout(() => {
-        switchContainer.classList.remove('switch-border')
-        if (body.getAttribute('class') === 'light') {
-            themeSwitch.innerHTML = '<i class="fa-solid fa-sun"></i>'
-    
-        } else {
-            themeSwitch.innerHTML = '<i class="fa-solid fa-moon"></i>'
-    
-        }
+        themeBtn.classList.remove('switch-border')
+
     }, 1500);
 }
 
@@ -251,7 +241,7 @@ function addToBudget() {
         // Set Balance
         setTimeout(() => {
 
-            calBalance = Number(getAmount) - savedExpenses
+            calBalance = getAmount - savedExpenses
             balanceValue.textContent = currencySym + addComma(calBalance)
         }, 1000)
 
@@ -322,6 +312,8 @@ const modifyElement = (element, edit = false) => {
     // console.log(calEditBal)
     calExpense = parseInt(currentExpense) - parseInt(parentAmount)
     expenditureValue.textContent = currencySym + addComma(calExpense)
+    console.log(calEditBal)
+    saveArrOnly('savedBalance', calEditBal)
     saveArrOnly('savedExpense', calExpense)
     // console.log(parentDiv)
     parentDiv.remove()
@@ -331,6 +323,7 @@ const modifyElement = (element, edit = false) => {
 
 let listCreator = function (expenseName, expenseValue, expenseId) {
     let sublistContent = document.createElement('div')
+
     sublistContent.id = expenseId
     sublistContent.classList.add('sublist-content', 'flex-space')
 
@@ -356,25 +349,27 @@ let listCreator = function (expenseName, expenseValue, expenseId) {
     list.appendChild(sublistContent)
 
     deleteBtn.addEventListener('click', function (el) {
-        
+
         modifyElement(deleteBtn)
 
         let currentElementId = el.target.parentElement.id
+        console.log(savedExpenseListArr, 'element ID:', currentElementId)
         savedExpenseListArr = savedExpenseListArr.filter(function (arr) {
-            
+            console.log('array ID:', String(arr.id))
             return arr.id !== currentElementId
         })
+        console.log(savedExpenseListArr)
         // console.log(savedExpenseListArr)
         saveArrOnly('myarr', savedExpenseListArr)
 
     })
     editBtns.addEventListener('click', function (el) {
-        
+
         productTitleError.classList.add('hide')
 
         let editElement = el.target.parentElement.id
         savedExpenseListArr = savedExpenseListArr.filter(function (arr) {
-           
+
             return arr.id !== editElement
         })
         // console.log(savedExpenseListArr)
@@ -383,11 +378,22 @@ let listCreator = function (expenseName, expenseValue, expenseId) {
 
     })
 }
+
+const generateID = () => {
+    let result = '';
+    let input_length = 12;
+    let chars = '[@678^#(ABC,F3qr.sIJKN_+}{:OPQRghi)jDEklm:~noGH=2pL*$Mtuvwx<STU1>5VW`XYZa4bcd&efyz09]';
+    for (var i = 0; i < input_length; i++) {
+        result += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return result;
+    // return Math.random().toString(36).slice(2)
+}
 // Add Expenses
 var loadList = true
 function disableBtn(el, boolean = false) {
     if (boolean) {
-        if (el === themeSwitch) {
+        if (el === themeBtn) {
             el.title = ''
         } else {
 
@@ -404,6 +410,7 @@ function disableBtn(el, boolean = false) {
         return
     }
 }
+
 checkAmountBtn.addEventListener('click', () => {
     // Empty checks
     if (!userAmount.value ||
@@ -411,7 +418,6 @@ checkAmountBtn.addEventListener('click', () => {
         productTitleError.classList.remove('hide')
         return false
     }
-
     // Check for Duplicates
     let productCheck = document.querySelectorAll('.product')
     Array.from(productCheck).forEach(title => {
@@ -421,9 +427,14 @@ checkAmountBtn.addEventListener('click', () => {
             loadList = false
 
         }
+        else {
+            loadList = true
+        }
     })
     setTimeout(productTitle.focus(), 1000)
+
     if (loadList) {
+        var idNow = generateID()
         // Expense
         let productCost = parseInt(userAmount.value)
         // Total expense (existing + new)
@@ -440,31 +451,31 @@ checkAmountBtn.addEventListener('click', () => {
         disableBtns(false)
         listDisplay.classList.remove('hide')
 
-        listCreator(productTitle.value.toUpperCase(), userAmount.value)
+        listCreator(productTitle.value.toUpperCase(), userAmount.value, idNow)
+
         savedExpenseListArr.push({
             title: productTitle.value.toUpperCase(),
-            cost: parseInt(userAmount.value)
+            cost: parseInt(userAmount.value),
+            id: idNow
         })
+
         saveArrOnly('myarr', filterArr(savedExpenseListArr))
         productTitle.value = ''
         userAmount.value = ''
-        createIds()
+
+
     }
-    // console.log(savedExpenseListArr)
-    // Empty input
 })
 
-
-createIds()
-
 function loadFilteredArr() {
+
     if (savedExpenseList) {
 
         if (savedExpenseList.length > 0) {
             savedExpenseListArr = savedExpenseList
 
-            filterArr(savedExpenseListArr).forEach((el, index) => {
-                el.id = (Number(index) + 1).toString()
+            filterArr(savedExpenseListArr).forEach((el) => {
+
                 listCreator(el.title, el.cost, el.id)
                 // console.log(el)
             })
@@ -473,22 +484,12 @@ function loadFilteredArr() {
     }
 }
 loadFilteredArr()
-// Creat dynamic Id
-function createIds() {
-
-    let listChild = document.querySelectorAll('.sublist-content a')
-    listChild.forEach((child, index) => {
-        child.id = Number(index) + 1
-        
-    })
-}
-createIds()
 
 // FilterArr r
+
 function filterArr(arr) {
-    const ids = arr.map(o => o.title)
-    const filtered = arr.filter(({ title }, index) => !ids.includes(title, index + 1))
-    
+    const filtered = arr.filter(({ title }, index) => !arr.includes(title, index + 1))
+
     return filtered
 }
 // Save to LocalStorage

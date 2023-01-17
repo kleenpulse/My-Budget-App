@@ -1,4 +1,4 @@
-
+let yearEl = document.getElementById('year')
 // Say Hello=============
 const sayHello = () => {
     let welcome;
@@ -24,6 +24,9 @@ const sayHello = () => {
 }
 
 sayHello()
+// get full year
+let year = new Date().getFullYear()
+yearEl.textContent = year
 
 let login = document.getElementById('login')
 // Say Hello=============

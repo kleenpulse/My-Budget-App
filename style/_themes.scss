@@ -1,87 +1,147 @@
+*,
+:root {
+	padding: 0;
+	margin: 0;
+	outline: none;
+	// =======Colors=======
+	--white: #fff;
+	--black: #000;
+	--grey0: #d6dce5;
+	--shadowLight: rgba(52, 52, 52, 0.277);
+	--shadowLight2: rgb(236, 236, 236);
+	--shadowDark: #1d013b;
+	--shadowDark2: #2e045bca;
+	--grey1: #c8daee;
+	--grey2: #969696;
+	--grey3: #606266;
+	--grey4: #454545;
+	--grey5: #2a292963;
+	--grey6: #1f2529;
+	--blue: #0084ff;
+	--green: #01ffa6;
+	--purpleDark: #060016;
+	--purpleDark2: #11013b;
+	--purple1: #21024b;
+	--purple2: #d803b1;
+	--purple3: #3e017a;
+	--orange: #ff6f00;
+	--red: #e31f01;
+	--valid: #11d2c5;
+	--cyan: #0ff;
+	--cyan1: #08b8b8;
+	--darkcyan: #025d5d;
+	--verydarkcyan: #012f2f;
+	--overlay: rgba(73, 71, 71, 0.593);
+	--yellow: #ffde0b;
+	--check-it: linear-gradient(90deg, var(--blue), var(--purple2), var(--cyan));
+	user-select: none;
+
+	--switchWidth: 80px;
+	--switchHeight: 30px;
+}
+
 .light {
-    --bg: var(--grey0);
+	--bg: var(--grey0);
 
-    --switchTextColor: var(--black);
+	--switchTextColor: var(--black);
 
-    --placeholder: var(--grey2);
+	--placeholder: var(--grey2);
 
---sayHello:linear-gradient(90deg, var(--blue), var(--purple2),var(--orange));
+	--sayHello: linear-gradient(
+		90deg,
+		var(--blue),
+		var(--purple2),
+		var(--orange)
+	);
 
-    --h3wrap: linear-gradient(-90deg, var(--purple1), var(--purple2),var(--purple3));
+	--h3wrap: linear-gradient(
+		-90deg,
+		var(--purple1),
+		var(--purple2),
+		var(--purple3)
+	);
 
-    --fontAwesome: linear-gradient(-90deg, var(--purple1), var(--purple2));
+	--fontAwesome: linear-gradient(-90deg, var(--purple1), var(--purple2));
 
-    --productColorLit: var(--purple1);
+	--productColorLit: var(--purple1);
 
-    --whiteLight: var(--white);
+	--whiteLight: var(--white);
 
-    --firstShadowColor: var(--shadowLight2);
+	--firstShadowColor: var(--shadowLight2);
 
-    --secondShadowColor: var(--shadowLight);
+	--secondShadowColor: var(--shadowLight);
 
-    --inputColor: var(--grey6);
+	--inputColor: var(--grey6);
 
-    --inputfocus: var(--purple1);
+	--inputfocus: var(--purple1);
 
-    --amountBG: var(--white);
+	--amountBG: var(--white);
 
-    --box-shadow: var(--shadowLight);
+	--box-shadow: var(--shadowLight);
 
-    --outputColor: var(--white);
+	--outputColor: var(--white);
 
-    --outputcontainer: linear-gradient(90deg, var(--purple1), var(--cyan1));
+	--outputcontainer: linear-gradient(90deg, var(--purple1), var(--cyan1));
 
-    --spancolor: var(--white);
+	--spancolor: var(--white);
 
-    --bgsubmit: linear-gradient(90deg, var(--purple1), var(--cyan),
-            var(--purple2));
+	--bgsubmit: linear-gradient(
+		90deg,
+		var(--purple1),
+		var(--cyan),
+		var(--purple2)
+	);
 
-    --error-color: var(--red);
+	--error-color: var(--red);
 
-    --btn: linear-gradient(90deg, var(--purple1), var(--cyan1));
+	--btn: linear-gradient(90deg, var(--purple1), var(--cyan1));
 
-    --scrollbar: var(--grey2);
+	--scrollbar: var(--grey2);
 }
 
 .dark {
-    --bg: var(--purpleDark);
+	--bg: var(--purpleDark);
 
-    --sayHello: linear-gradient(90deg, var(--blue), var(--purple2), var(--cyan));
+	--sayHello: linear-gradient(90deg, var(--blue), var(--purple2), var(--cyan));
 
-    --switchTextColor: #fff;
+	--switchTextColor: #fff;
 
-    --fontAwesome: linear-gradient(90deg, var(--purple3), var(--purple2));
+	--fontAwesome: linear-gradient(90deg, var(--purple3), var(--purple2));
 
-    --placeholder: var(--grey2);
+	--placeholder: var(--grey2);
 
-    --h3wrap: linear-gradient(0deg, var(--grey2), var(--grey0));
+	--h3wrap: linear-gradient(0deg, var(--grey2), var(--grey0));
 
-    --productColorLit: var(--grey0);
+	--productColorLit: var(--grey0);
 
-    --inputColor: var(--grey0);
+	--inputColor: var(--grey0);
 
-    --outputColor: var(--grey0);
+	--outputColor: var(--grey0);
 
-    --firstShadowColor: var(--shadowDark2);
-    
-    --secondShadowColor: var(--black);
+	--firstShadowColor: var(--shadowDark2);
 
-    --inputfocus: var(--cyan);
+	--secondShadowColor: var(--black);
 
-    --box-shadow: var(--black);
+	--inputfocus: var(--cyan);
 
-    --white: var(--grey6);
+	--box-shadow: var(--black);
 
-    --outputcontainer: linear-gradient(90deg, var(--purple1), var(--cyan1));
+	--white: var(--grey6);
 
-    --bgsubmit: linear-gradient(90deg, var(--yellow), var(--cyan),
-            var(--purple2));
+	--outputcontainer: linear-gradient(90deg, var(--purple1), var(--cyan1));
 
-    --error-color: var(--red);
+	--bgsubmit: linear-gradient(
+		90deg,
+		var(--yellow),
+		var(--cyan),
+		var(--purple2)
+	);
 
-    --btn: linear-gradient(90deg, var(--purple1), var(--cyan1));
+	--error-color: var(--red);
 
-    --whiteLight: var(--purpleDark2);
+	--btn: linear-gradient(90deg, var(--purple1), var(--cyan1));
 
-    --scrollbar: var(--purple1);
+	--whiteLight: var(--purpleDark2);
+
+	--scrollbar: var(--purple2);
 }
