@@ -161,7 +161,7 @@ function updateValues() {
         disableBtn(userAmount, false)
         // Total Budget
         totalAmountBtn.textContent = 'New Budget'
-        increaseBudget.classList.remove('hide')
+
         tempAmount = checkSavedAmount
         amount.textContent = currencySym + addComma(tempAmount)
         // Calculate total expensesCost
@@ -220,9 +220,7 @@ totalAmountBtn.addEventListener('click', () => {
     }
 })
 // console.log(tempAmount)
-increaseBudget.onclick = () => {
-    addToBudget()
-}
+
 // Increase the Budget
 function addToBudget() {
     tempIncrease = totalAmount.value
